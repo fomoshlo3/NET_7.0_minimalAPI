@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
 {
@@ -21,24 +22,32 @@ namespace DataAccess.Repositories
             return toCreate;
         }
 
-        public Task DeletePost(int postId)
+        public async Task DeletePost(int postId)
         {
-            throw new NotImplementedException();
+            var post = await _ctx.Posts
+                .FirstOrDefaultAsync(post=>post.Id == postId);
+            if (post == null) return;
+            _ctx.Posts.Remove(post);
+            await _ctx.SaveChangesAsync();
         }
 
-        public Task<ICollection<Post>> GetAllPosts()
+        public async Task<ICollection<Post>> GetAllPosts()
         {
-            throw new NotImplementedException();
+            return await _ctx.Posts.ToListAsync();
         }
 
-        public Task<Post> GetPost(int postId)
+        public async Task<Post> GetPost(int postId)
         {
-            throw new NotImplementedException();
+            return await _ctx.Posts.FirstOrDefaultAsync(post => post.Id == postId);
         }
 
-        public Task<Post> UpdatePost(string updateContent, int postId)
+        public async Task<Post> UpdatePost(string updatedContent, int postId)
         {
-            throw new NotImplementedException();
+            var post = await _ctx.Posts.FirstOrDefaultAsync(post=>post.Id == postId);
+            post.DateLastModified = DateTime.Now;
+            post.Content = updatedContent;
+            await _ctx.SaveChangesAsync();
+            return post;
         }
     }
 }
