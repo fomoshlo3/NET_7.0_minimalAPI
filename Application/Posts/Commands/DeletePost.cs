@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Domain.Models;
+using MediatR;
 
 namespace Application.Posts.Commands
 {

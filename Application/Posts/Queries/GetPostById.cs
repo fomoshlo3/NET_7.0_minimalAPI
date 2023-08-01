@@ -8,7 +8,8 @@ using System.Threading.Tasks;
 
 namespace Application.Posts.Queries
 {
-    public class GetAllPosts : IRequest<ICollection<Post>>
+    public class GetPostById : IRequest<Post>
     {
+        public int PostId { get; set; }
     }
 }

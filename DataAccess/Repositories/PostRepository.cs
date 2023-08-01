@@ -1,5 +1,6 @@
 ﻿using Application.Abstractions;
 using Domain.Models;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess.Repositories
@@ -36,7 +37,7 @@ namespace DataAccess.Repositories
             return await _ctx.Posts.ToListAsync();
         }
 
-        public async Task<Post> GetPost(int postId)
+        public async Task<Post> GetPostById(int postId)
         {
             return await _ctx.Posts.FirstOrDefaultAsync(post => post.Id == postId);
         }

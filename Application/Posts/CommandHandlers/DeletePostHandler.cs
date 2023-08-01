@@ -5,7 +5,7 @@ using MediatR;
 
 namespace Application.Posts.CommandHandlers
 {
-    //TODO: research what may be the problem
+    //TODO: research what may be the problem with Unit.Value
     public class DeletePostHandler : IRequestHandler<DeletePost>
     {
         private readonly IPostRepository _postsRepo;
@@ -19,5 +19,10 @@ namespace Application.Posts.CommandHandlers
             await _postsRepo.DeletePost(request.PostId);
             return Unit.Value;
         }
+
+        //Task IRequestHandler<DeletePost>.Handle(DeletePost request, CancellationToken cancellationToken)
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
