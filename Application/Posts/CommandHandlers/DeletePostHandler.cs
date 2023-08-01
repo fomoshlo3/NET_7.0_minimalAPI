@@ -5,6 +5,7 @@ using MediatR;
 
 namespace Application.Posts.CommandHandlers
 {
+    //TODO: research what may be the problem
     public class DeletePostHandler : IRequestHandler<DeletePost>
     {
         private readonly IPostRepository _postsRepo;
