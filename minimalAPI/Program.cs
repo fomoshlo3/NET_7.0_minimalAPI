@@ -1,5 +1,15 @@
 //NOTE: https://youtu.be/RRrsFE6OXAQ
 
+/* Summary:
+ * net 7.0 minimal API with:
+ *  - clean architecture
+ *  - exact folder structure
+ *  - Database
+ *  - EFCore
+ *  - Repository Pattern
+ *  - CQRS with MediatR
+ */
+
 using minimalAPI.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
