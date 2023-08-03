@@ -2,6 +2,7 @@
 using Application.Posts.Queries;
 using Domain.Models;
 using MediatR;
+using minimalAPI.Filters;
 
 namespace minimalAPI.Abstractions.EndpointDefinitions
 {
@@ -14,9 +15,11 @@ namespace minimalAPI.Abstractions.EndpointDefinitions
             posts.MapGet("/{id}", GetPostById) //<= This is now a delegate, so IDE auto overloads IMediator and an int Id
             //Adding Metadata
             .WithName("GetPostById");
-            posts.MapPost("/",CreatePost);
-            posts.MapGet("/",GetAllPosts);
-            posts.MapPut("/{id}",UpdatePost);
+            posts.MapPost("/", CreatePost)
+                 .AddEndpointFilter<PostValidationFilter>();
+            posts.MapGet("/", GetAllPosts);
+            posts.MapPut("/{id}",UpdatePost)
+                 .AddEndpointFilter<PostValidationFilter>();
             posts.MapDelete("/{id}",DeletePost);
         }
 
