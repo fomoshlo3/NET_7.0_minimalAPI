@@ -1,5 +1,5 @@
 ﻿using Domain.Models;
-using MediatR;
+
 
 namespace Application.Abstractions
 {
