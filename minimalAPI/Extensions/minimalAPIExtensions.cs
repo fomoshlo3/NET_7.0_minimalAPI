@@ -8,12 +8,15 @@ using minimalAPI.Abstractions;
 
 namespace minimalAPI.Extensions
 {
+    /// <summary>
+    /// Basically a substitute for Startup Pattern
+    /// </summary>
     public static class minimalAPIExtensions
     {
         public static void RegisterServices(this WebApplicationBuilder builder)
         {
             //Change ConnectionStrings in appsettiongs.json
-            builder.Services.AddDbContext<SocialDbContext>(opt => opt.UseSqlServer("name=ConnectionStrings:AtWork"));
+            builder.Services.AddDbContext<SocialDbContext>(opt => opt.UseSqlServer("name=ConnectionStrings:Default"));
             builder.Services.AddScoped<IPostRepository, PostRepository>();
             builder.Services.AddMediatR(typeof(CreatePost));
         }
